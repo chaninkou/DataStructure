@@ -1,21 +1,31 @@
 package stack;
 
-public class StackWithFixedSize {
-	private int[] stack;
+public class StackDynamicSize {
+private int[] stack;
+	private int capacity = 8;
 	
 	private int top;
 	
-	private int capacity;
-	
-	public StackWithFixedSize(int size) {
-		capacity = size;
-		stack = new int[size];
+	public StackDynamicSize() {
+		stack = new int[capacity];
 		top = 0;
+	}
+	
+	public void extendStack(){
+		int length = size();
+		
+		int[] newStack = new int[capacity * 2];
+		
+		System.arraycopy(stack, 0, newStack, 0, length);
+		
+		stack = newStack;
+		
+		capacity = capacity * 2;
 	}
 	
 	public void push(int num){
 		if(isFull()){
-			System.out.println("Stack is full");
+			extendStack();
 		} else {
 			stack[top] = num;
 			top++;
@@ -33,9 +43,26 @@ public class StackWithFixedSize {
 			data = stack[top];
 			
 			stack[top] = 0;
+			
+			// Not really needed
+			shrinkStackSize();
 		}
 		
 		return data;
+	}
+	
+	public void shrinkStackSize(){
+		int length = size();
+		
+		if(length <= (capacity / 2)/ 2){
+			capacity = capacity/2;
+		}
+		
+		int[] newStack = new int[capacity];
+		
+		System.arraycopy(stack, 0, newStack, 0, length);
+		
+		stack = newStack;
 	}
 	
 	public int peek(){

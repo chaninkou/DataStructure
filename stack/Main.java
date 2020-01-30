@@ -16,5 +16,19 @@ public class Main {
 		
 		System.out.println(stack.peek());
 		
+		
+		System.out.println("------------------------------");
+		
+		StackDynamicSize stack2 = new StackDynamicSize();
+		
+		stack2.push(2);
+		
+		stack2.push(2);
+		stack2.push(2);
+		stack2.push(2);
+	
+		
+		stack2.show();
+		
 	}
 }
