@@ -8,60 +8,9 @@ public class MinHeap {
 	
 	int[] items = new int[capacity];
 	
-	private int getLeftChildIndex(int parentIndex){
-		return parentIndex * 2 + 1;
-	}
-	
-	private int getRightChildIndex(int parentIndex){
-		return parentIndex * 2 + 2;
-	}
-	
-	private int getParentIndex(int childIndex){
-		return (childIndex - 1) / 2;
-	}
-	
-	private boolean hasLeftChild(int index){
-		return getLeftChildIndex(index) < size;
-	}
-	
-	private boolean hasRightChild(int index){
-		return getRightChildIndex(index) < size;
-	}
-	
-	private boolean hasParent(int index){
-		return getParentIndex(index) >= 0;
-	}
-	
-	private int leftChild(int index){
-		return items[getLeftChildIndex(index)];
-	}
-	private int rightChild(int index){
-		return items[getRightChildIndex(index)];
-	}
-	private int parent(int index){
-		return items[getParentIndex(index)];
-	}
-	
-	private void swap(int a, int b){
-		int temp = items[a];
-		
-		items[a] = items[b];
-		
-		items[b] = temp;
-	}
-	
-	private void ensureExtraCapacity(){
-		if(size == capacity){
-			// Using built in method to copy array and increase the size
-			items = Arrays.copyOf(items, items.length * 2);
-			
-			capacity = capacity * 2;
-		}
-	}
-	
 	// Check out what is the min
 	public int peek(){
-		if(size == 0){
+		if(isEmpty()){
 			throw new IllegalStateException();
 		}
 		
@@ -70,7 +19,7 @@ public class MinHeap {
 	
 	// remove min method
 	public int poll(){
-		if(size == 0){
+		if(isEmpty()){
 			throw new IllegalStateException();
 		}
 		
@@ -130,4 +79,64 @@ public class MinHeap {
 			}
 		}
 	}
+	
+	
+	//	Helper methods
+	private int getParentIndex(int childIndex){
+		return (childIndex - 1) / 2;
+	}
+	
+	private int getLeftChildIndex(int parentIndex){
+		return parentIndex * 2 + 1;
+	}
+	
+	private int getRightChildIndex(int parentIndex){
+		return parentIndex * 2 + 2;
+	}
+	
+	private boolean hasLeftChild(int index){
+		return getLeftChildIndex(index) < size;
+	}
+	
+	private boolean hasRightChild(int index){
+		return getRightChildIndex(index) < size;
+	}
+	
+	private boolean hasParent(int index){
+		return getParentIndex(index) >= 0;
+	}
+	
+	private int leftChild(int index){
+		return items[getLeftChildIndex(index)];
+	}
+	private int rightChild(int index){
+		return items[getRightChildIndex(index)];
+	}
+	private int parent(int index){
+		return items[getParentIndex(index)];
+	}
+	
+	// Swap method
+	private void swap(int a, int b){
+		int temp = items[a];
+		
+		items[a] = items[b];
+		
+		items[b] = temp;
+	}
+	
+	// Increase the size if needed
+	private void ensureExtraCapacity(){
+		if(size == capacity){
+			// Using built in method to copy array and increase the size
+			items = Arrays.copyOf(items, items.length * 2);
+			
+			capacity = capacity * 2;
+		}
+	}
+	
+	private boolean isEmpty(){
+		return size == 0;
+	}
+	
 }
