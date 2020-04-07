@@ -23,6 +23,9 @@ public class Main {
 			System.out.println(phoneBook.get(i));
 		}
 		
+		for(String value : phoneBook.values()){
+			System.out.println("value: " + value);
+		}
 		
 		// Another way to do it
 		Set<Map.Entry<String, String>> values = phoneBook.entrySet();
@@ -46,6 +49,10 @@ public class Main {
 		
 		for(Map.Entry<String, String> b : values2){
 			System.out.println(b.getKey() + " : " + b.getValue()); 
+		}
+		
+		if(phoneBook2.containsKey("Michael")){
+			System.out.println("yes michael is there");
 		}
 		
 		System.out.println("---------------------------- TreeHashMap below");
