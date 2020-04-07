@@ -1,5 +1,7 @@
 package stack;
 
+import java.util.Stack;
+
 public class Main {
 	public static void main(String[] args) {
 		StackWithFixedSize stack = new StackWithFixedSize(5);
@@ -29,6 +31,22 @@ public class Main {
 	
 		
 		stack2.show();
+		
+		System.out.println("--------------------------");
+		
+		Stack<String> stack3 = new Stack<>();
+		
+		stack3.push("a");
+		
+		stack3.add("b");
+		
+		stack3.add("c");
+		
+		stack3.remove(0);
+		
+		stack3.pop();
+		
+		System.out.println(stack3);
 		
 	}
 }
