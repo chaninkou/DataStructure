@@ -17,13 +17,13 @@ public class Main {
 //			System.out.println(i + " ==> " + list[i]);
 //		}
 
-		GraphWithAdjacencyList g = new GraphWithAdjacencyList(10);
+		GraphWithAdjacencyList graph = new GraphWithAdjacencyList(10);
 		
-		g.addEdge(0, 2, 10);
-		g.addEdge(0, 5, 15);
-		g.addEdge(2, 5, 10);
-		g.addEdge(9, 3, 16);
+		graph.addEdge(0, 2, 10);
+		graph.addEdge(0, 5, 15);
+		graph.addEdge(2, 5, 10);
+		graph.addEdge(9, 3, 16);
 		
-		System.out.println(g);
+		System.out.println(graph);
 	}
 }

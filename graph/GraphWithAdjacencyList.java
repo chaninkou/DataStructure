@@ -12,55 +12,65 @@ public class GraphWithAdjacencyList {
 	
 	// Own user define type, instead of integer array
 	class Edge{
-		// v is the n vertex
+		// v is the vertex
 		// w is the weight
-		int v, w;
+		int vertex, weight;
 		
-		public Edge(int v, int w){
-			this.v = v;
-			this.w = w;
+		public Edge(int vertex, int weight){
+			this.vertex = vertex;
+			this.weight = weight;
 		}
 		
 		@Override
 		public String toString(){
-			return "(" + v + "," + w + ")";
+			return "(" + vertex + "," + weight + ")";
 		}
 	}
 	
 	// Array of list of type Edge
 	// Could've used LinkedList class instead
-	List<Edge>[] G;
+	List<Edge>[] graph;
 	
 	// Graph constructor where n is the size of the array
-	public GraphWithAdjacencyList(int n){
+	public GraphWithAdjacencyList(int size){
 		// Create an array with size n
-		G = new LinkedList[n];
+		graph = new LinkedList[size];
 		
 		// Create new object for each element in array
-		for(int i = 0; i < G.length; i++){
-			G[i] = new LinkedList<>();
+		for(int i = 0; i < graph.length; i++){
+			graph[i] = new LinkedList<>();
 		}
 		
 	}
 	
 	// A method that add a new object of edge into current array
-	void addEdge(int u, int v, int w){
+	public void addEdge(int startVertex, int endVertex, int weight){
 		// Adding at the beginning of index is O(1)
 		// If adding at the end of index is O(N)
-		G[u].add(0, new Edge(v,w));
+		graph[startVertex].add(0, new Edge(endVertex,weight));
 		
 		// Or we could've used linkedlist 
-		// G[u].addFirst(new Edge(v,w));
+		// graph[startVertex].addFirst(new Edge(endVertex,weight));
 	}
 	
+	public boolean checkConnected(int startVertex, int endVertex){
+		
+		for(Edge current : graph[startVertex]){
+			if(current.vertex == endVertex){
+				return true;
+			}
+		}
+		
+		return false;
+	}
 	
-	
+
 	@Override
 	public String toString(){
 		String result = "";
 		
-		for(int i = 0; i < G.length; i++){
-			result += i + " ==>" + G[i] + "\n";
+		for(int i = 0; i < graph.length; i++){
+			result += i + " ==>" + graph[i] + "\n";
 		}
 		
 		return result;
